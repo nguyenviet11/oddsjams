@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oddjjam Fitness Club | Elite Athletic Performance</title>
+    <style>
+        /* MODERN RESET & BASE STYLES */
+        :root {
+            /* Brand Colors */
+            --red: #ff2b4a;
+            --black: #121212;
+            --dark-gray: #2a2a2a;
+            --light-gray: #f5f5f5;
+            --white: #ffffff;
+            --accent: #ffcc00;
+            
+            /* Typography */
+            --font-primary: 'Helvetica Neue', Arial, sans-serif;
+            --font-display: 'Helvetica Neue', Arial, sans-serif;
+            
+            /* Spacing */
+            --space-xs: clamp(0.5rem, 0.5vw, 0.75rem);
+            --space-sm: clamp(1rem, 1vw, 1.5rem);
+            --space-md: clamp(2rem, 3vw, 3rem);
+            --space-lg: clamp(4rem, 5vw, 6rem);
+            --space-xl: clamp(6rem, 8vw, 10rem);
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 62.5%; /* 10px base for easier rem calculations */
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            font-size: 1.6rem;
+            line-height: 1.5;
+            color: var(--black);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color var(--transition-medium);
+        }
+        
+        ul, ol {
+            list-style: none;
+        }
+        
+        /* TYPOGRAPHY */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+        
+        h1 {
+            font-size: clamp(4rem, 8vw, 9.6rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+        
+        h2 {
+            font-size: clamp(3.2rem, 5vw, 6.4rem);
+            letter-spacing: -0.01em;
+        }
+        
+        h3 {
+            font-size: clamp(2.4rem, 3vw, 4rem);
+        }
+        
+        h4 {
+            font-size: clamp(2rem, 2vw, 2.4rem);
+        }
+        
+        .text-red {
+            color: var(--red);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .text-uppercase {
+            text-transform: uppercase;
+        }
+        
+        .text-bold {
+            font-weight: 700;
+        }
+        
+        .text-extrabold {
+            font-weight: 900;
+        }
+        
+        /* LAYOUT */
+        .container {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 var(--space-sm);
+        }
+        
+        .grid {
+            display: grid;
+            gap: var(--space-md);
+        }
+        
+        .flex {
+            display: flex;
+        }
+        
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .flex-between {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .section {
+            padding: var(--space-xl) 0;
+            position: relative;
+        }
+        
+        .section-dark {
+            background-color: var(--black);
+            color: var(--white);
+        }
+        
+        /* HEADER & NAVIGATION */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: var(--space-sm) 0;
+            background-color: transparent;
+            transition: all var(--transition-medium);
+        }
+        
+        .header.scrolled {
+            background-color: var(--black);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: var(--white);
+        }
+        
+        .logo span {
+            color: var(--red);
+        }
+        
+        .logo-emoji {
+            margin-left: var(--space-xs);
+            font-size: 2.8rem;
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        
+        .nav-list {
+            display: flex;
+            gap: var(--space-md);
+        }
+        
+        .nav-link {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+            padding: var(--space-xs) 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--red);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform var(--transition-medium);
+        }
+        
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .nav-cta {
+            background-color: var(--red);
+            color: var(--white);
+            padding: var(--space-xs) var(--space-md);
+            border-radius: 0;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all var(--transition-medium);
+        }
+        
+        .nav-cta:hover {
+            background-color: var(--white);
+            color: var(--red);
+            transform: translateY(-3px);
+        }
+        
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--space-xs);
+            z-index: 1000;
+        }
+        
+        .mobile-nav-toggle span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: var(--white);
+            margin: 6px 0;
+            transition: all var(--transition-medium);
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            min-height: 800px;
+            background: linear-gradient(90deg, rgba(18,18,18,0.9) 0%, rgba(18,18,18,0.7) 100%), 
+                url('https://images.unsplash.com/photo-1599058917765-a780eda07a3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=85') no-repeat center/cover;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            right: -10%;
+            width: 60%;
+            height: 80%;
+            background-color: var(--red);
+            opacity: 0.1;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-tagline {
+            color: var(--red);
+            font-size: 2.4rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .hero-title {
+            color: var(--white);
+            margin-bottom: var(--space-md);
+            line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+            color: var(--white);
+            font-size: 2.4rem;
+            margin-bottom: var(--space-lg);
+            max-width: 700px;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1.8rem 3.6rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-medium);
+        }
+        
+        .btn-primary {
+            background-color: var(--red);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--white);
+            color: var(--red);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 43, 74, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--black);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+        }
+        
+        /* FEATURES SECTION */
+        .features {
+            background-color: var(--white);
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto var(--space-lg);
+        }
+        
+        .section-title {
+            margin-bottom: var(--space-sm);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--red);
+        }
+        
+        .section-subtitle {
+            font-size: 2rem;
+            color: var(--dark-gray);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+        }
+        
+        .feature-card {
+            background-color: var(--light-gray);
+            padding: var(--space-lg);
+            border-radius: 0;
+            transition: transform var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--red);
+            z-index: -1;
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform var(--transition-slow);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .feature-card:hover .feature-title,
+        .feature-card:hover .feature-text {
+            color: var(--white);
+        }
+        
+        .feature-icon {
+            font-size: 4.8rem;
+            color: var(--red);
+            margin-bottom: var(--space-md);
+            transition: color var(--transition-medium);
+        }
+        
+        .feature-card:hover .feature-icon {
+            color: var(--white);
+        }
+        
+        .feature-title {
+            font-size: 2.4rem;
+            margin-bottom: var(--space-sm);
+            transition: color var(--transition-medium);
+        }
+        
+        .feature-text {
+            font-size: 1.8rem;
+            transition: color var(--transition-medium);
+        }
+        
+        /* PROGRAMS SECTION */
+        .programs {
+            background-color: var(--black);
+            color: var(--white);
+        }
+        
+        .programs .section-subtitle {
+            color: var(--light-gray);
+        }
+        
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-md);
+        }
+        
+        .program-card {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        .program-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+        
+        .program-card:hover .program-image {
+            transform: scale(1.1);
+        }
+        
+        .program-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+            padding: var(--space-md);
+            transform: translateY(70px);
+            transition: transform var(--transition-medium);
+        }
+        
+        .program-card:hover .program-overlay {
+            transform: translateY(0);
+        }
+        
+        .program-title {
+            font-size: 2.8rem;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .program-description {
+            font-size: 1.8rem;
+            margin-bottom: var(--space-md);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all var(--transition-medium);
+            transition-delay: 0.1s;
+        }
+        
+        .program-card:hover .program-description {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .program-link {
+            display: inline-block;
+            color: var(--red);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color var(--transition-medium);
+        }
+        
+        .program-link:hover {
+            color: var(--white);
+        }
+        
+        /* TRAINERS SECTION */
+        .trainers {
+            background-color: var(--light-gray);
+        }
+        
+        .trainers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-md);
+        }
+        
+        .trainer-card {
+            background-color: var(--white);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .trainer-image-container {
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .trainer-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-medium);
+        }
+        
+        .trainer-card:hover .trainer-image {
+            transform: scale(1.1);
+        }
+        
+        .trainer-info {
+            padding: var(--space-md);
+            position: relative;
+        }
+        
+        .trainer-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--red);
+        }
+        
+        .trainer-name {
+            font-size: 2.4rem;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .trainer-role {
+            color: var(--red);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .trainer-bio {
+            font-size: 1.6rem;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .trainer-social {
+            display: flex;
+            gap: var(--space-sm);
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-gray);
+            color: var(--black);
+            border-radius: 50%;
+            transition: all var(--transition-medium);
+        }
+        
+        .social-link:hover {
+            background-color: var(--red);
+            color: var(--white);
+        }
+        
+        /* TESTIMONIALS SECTION */
+        .testimonials {
+            background: linear-gradient(90deg, rgba(18,18,18,0.9) 0%, rgba(18,18,18,0.7) 100%), 
+                url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center/cover;
+            color: var(--white);
+        }
+        
+        .testimonial-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: var(--space-lg);
+            border-left: 5px solid var(--red);
+            margin-bottom: var(--space-lg);
+            position: relative;
+        }
+        
+        .testimonial-card:last-child {
+            margin-bottom: 0;
+        }
+        
+        .testimonial-text {
+            font-size: 2.4rem;
+            font-style: italic;
+            margin-bottom: var(--space-md);
+            position: relative;
+        }
+        
+        .testimonial-text::before {
+            content: '"';
+            font-size: 8rem;
+            color: var(--red);
+            opacity: 0.3;
+            position: absolute;
+            top: -50px;
+            left: -20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: var(--space-md);
+            border: 3px solid var(--red);
+        }
+        
+        .author-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .author-info {
+            font-size: 1.6rem;
+            color: var(--light-gray);
+        }
+        
+        /* CTA SECTION */
+        .cta {
+            background-color: var(--red);
+            color: var(--white);
+            text-align: center;
+            padding: var(--space-xl) 0;
+        }
+        
+        .cta-title {
+            font-size: 5.6rem;
+            margin-bottom: var(--space-md);
+        }
+        
+        .cta-text {
+            font-size: 2.4rem;
+            max-width: 800px;
+            margin: 0 auto var(--space-lg);
+        }
+        
+        .btn-white {
+            background-color: var(--white);
+            color: var(--red);
+        }
+        
+        .btn-white:hover {
+            background-color: var(--black);
+            color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* FOOTER */
+        .footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: var(--space-xl) 0 var(--space-md);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .footer-logo {
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin-bottom: var(--space-md);
+        }
+        
+        .footer-about {
+            font-size: 1.6rem;
+            margin-bottom: var(--space-md);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: var(--space-sm);
+        }
+        
+        .footer-heading {
+            font-size: 2rem;
+            margin-bottom: var(--space-md);
+            position: relative;
+            padding-bottom: var(--space-xs);
+        }
+        
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--red);
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .footer-links a {
+            color: var(--light-gray);
+            font-size: 1.6rem;
+            transition: color var(--transition-medium);
+        }
+        
+        .footer-links a:hover {
+            color: var(--red);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .contact-icon {
+            margin-right: var(--space-sm);
+            color: var(--red);
+        }
+        
+        .contact-text {
+            font-size: 1.6rem;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--space-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .copyright {
+            font-size: 1.4rem;
+            color: var(--light-gray);
+        }
+        
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1024px) {
+            html {
+                font-size: 56.25%; /* 9px base */
+            }
+            
+            .hero {
+                min-height: 700px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            html {
+                font-size: 50%; /* 8px base */
+            }
+            
+            .mobile-nav-toggle {
+                display: block;
+            }
+            
+            .nav-list {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--black);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: var(--space-lg);
+                transition: right var(--transition-medium);
+                z-index: 999;
+            }
+            
+            .nav-list.active {
+                right: 0;
+            }
+            
+            .nav-cta {
+                display: none;
+            }
+            
+            .hero {
+                text-align: center;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+            }
+            
+            .btn-group {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section {
+                padding: var(--space-lg) 0;
+            }
+            
+            .hero {
+                min-height: 600px;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .feature-card {
+                padding: var(--space-md);
+            }
+            
+            .program-card {
+                height: 400px;
+            }
+            
+            .testimonial-card {
+                padding: var(--space-md);
+            }
+            
+            .testimonial-text {
+                font-size: 2rem;
+            }
+            
+            .cta-title {
+                font-size: 4rem;
+            }
+            
+            .cta-text {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container flex-between">
+            <a href="index.html" class="logo">
+                Oddjjam <span>FITNESS</span>
+            </a>
+            
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="#features" class="nav-link">Facilities</a></li>
+                    <li><a href="#programs" class="nav-link">Programs</a></li>
+                    <li><a href="#trainers" class="nav-link">Trainers</a></li>
+                    <li><a href="contact-us.html" class="nav-link">Contact</a></li>
+                    <li><a href="privacy-policy.html" class="nav-link">Privacy</a></li>
+                </ul>
+                
+                <a href="contact-us.html" class="nav-cta">Join Now</a>
+                
+                <button class="mobile-nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <p class="hero-tagline">Elite Athletic Performance</p>
+                <h1 class="hero-title">TRANSFORM YOUR <span class="text-red">POTENTIAL</span></h1>
+                <p class="hero-subtitle">Join Manila's premier fitness destination for serious athletes and those who train like them. Specialized zones, expert coaching, results-driven approach.</p>
+                
+                <div class="btn-group">
+                    <a href="contact-us.html" class="btn btn-primary">Start Your Journey</a>
+                    <a href="#programs" class="btn btn-secondary">Explore Programs</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="features" class="features section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Elite Facilities</h2>
+                <p class="section-subtitle">Purpose-built training zones designed for peak performance</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🥊</div>
+                    <h3 class="feature-title">Combat Zone</h3>
+                    <p class="feature-text">Professional boxing ring, heavy bags, speed bags, and specialized equipment for combat sports training. Perfect your technique with dedicated space for shadowboxing and footwork drills.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏋️</div>
+                    <h3 class="feature-title">Power Station</h3>
+                    <p class="feature-text">Premium strength training area with Olympic lifting platforms, competition-grade barbells, power racks, and comprehensive free weights. Build raw strength and explosive power.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏃</div>
+                    <h3 class="feature-title">Performance Turf</h3>
+                    <p class="feature-text">Indoor turf track for sprint work, sled pushes, battle ropes, and athletic conditioning. Train like a professional athlete with space designed for functional movement patterns.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">HIIT Arena</h3>
+                    <p class="feature-text">Dedicated high-intensity interval training space with rowers, assault bikes, kettlebells, and metabolic conditioning equipment for maximum calorie burn and cardiovascular fitness.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🧘</div>
+                    <h3 class="feature-title">Recovery Suite</h3>
+                    <p class="feature-text">Specialized recovery area with foam rolling stations, stretching platforms, percussion therapy tools, and guided mobility sessions to enhance performance and prevent injury.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💧</div>
+                    <h3 class="feature-title">Hydration Bar</h3>
+                    <p class="feature-text">Premium nutrition station offering protein shakes, BCAAs, electrolyte drinks, and performance supplements to fuel your workouts and maximize recovery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAMS SECTION -->
+    <section id="programs" class="programs section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Signature Programs</h2>
+                <p class="section-subtitle">Results-driven training methodologies for all fitness levels</p>
+            </div>
+            
+            <div class="programs-grid">
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1549576490-b0b4831ef60a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" alt="Boxing Training" class="program-image">
+                    <div class="program-overlay">
+                        <h3 class="program-title">KNOCKOUT</h3>
+                        <p class="program-description">Our signature boxing program combines technical skill development with high-intensity conditioning. Learn proper form, footwork, and combinations while building endurance and power.</p>
+                        <a href="contact-us.html" class="program-link">Learn More →</a>
+                    </div>
+                </div>
+                
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" alt="Strength Training" class="program-image">
+                    <div class="program-overlay">
+                        <h3 class="program-title">BEAST MODE</h3>
+                        <p class="program-description">Progressive strength training program focused on compound movements, proper technique, and consistent progression. Build muscle, increase strength, and improve body composition.</p>
+                        <a href="contact-us.html" class="program-link">Learn More →</a>
+                    </div>
+                </div>
+                
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" alt="HIIT Training" class="program-image">
+                    <div class="program-overlay">
+                        <h3 class="program-title">AFTERBURNER</h3>
+                        <p class="program-description">High-intensity metabolic conditioning that combines cardio and strength elements in timed intervals. Maximize calorie burn, improve conditioning, and boost your metabolism.</p>
+                        <a href="contact-us.html" class="program-link">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRAINERS SECTION -->
+    <section id="trainers" class="trainers section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Elite Coaching Team</h2>
+                <p class="section-subtitle">World-class trainers dedicated to your transformation</p>
+            </div>
+            
+            <div class="trainers-grid">
+                <div class="trainer-card">
+                    <div class="trainer-image-container">
+                        <img src="https://images.unsplash.com/photo-1597347343908-2937e7dcc560?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" alt="Marco Santos" class="trainer-image">
+                    </div>
+                    <div class="trainer-info">
+                        <h3 class="trainer-name">Marco Santos</h3>
+                        <p class="trainer-role">Head Boxing Coach</p>
+                        <p class="trainer-bio">Former national boxing champion with over 15 years of professional coaching experience. Specializes in technical development and fight preparation.</p>
+                        <div class="trainer-social">
+                            <a href="#" class="social-link">FB</a>
+                            <a href="#" class="social-link">IG</a>
+                            <a href="#" class="social-link">TW</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="trainer-card">
+                    <div class="trainer-image-container">
+                        <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" alt="Sophia Reyes" class="trainer-image">
+                    </div>
+                    <div class="trainer-info">
+                        <h3 class="trainer-name">Sophia Reyes</h3>
+                        <p class="trainer-role">Strength & Performance</p>
+                        <p class="trainer-bio">Certified strength coach with a background in competitive powerlifting. Expert in program design for strength development and athletic performance.</p>
+                        <div class="trainer-social">
+                            <a href="#" class="social-link">FB</a>
+                            <a href="#" class="social-link">IG</a>
+                            <a href="#" class="social-link">TW</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="trainer-card">
+                    <div class="trainer-image-container">
+                        <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" alt="Daniel Cruz" class="trainer-image">
+                    </div>
+                    <div class="trainer-info">
+                        <h3 class="trainer-name">Daniel Cruz</h3>
+                        <p class="trainer-role">Conditioning Specialist</p>
+                        <p class="trainer-bio">Former MMA fighter with expertise in metabolic conditioning and functional training. Creates challenging workouts that push physical and mental limits.</p>
+                        <div class="trainer-social">
+                            <a href="#" class="social-link">FB</a>
+                            <a href="#" class="social-link">IG</a>
+                            <a href="#" class="social-link">TW</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="trainer-card">
+                    <div class="trainer-image-container">
+                        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" alt="Maria Lim" class="trainer-image">
+                    </div>
+                    <div class="trainer-info">
+                        <h3 class="trainer-name">Maria Lim</h3>
+                        <p class="trainer-role">Nutrition & Recovery</p>
+                        <p class="trainer-bio">Sports nutritionist and recovery specialist who helps members optimize their nutrition, supplementation, and recovery protocols for maximum results.</p>
+                        <div class="trainer-social">
+                            <a href="#" class="social-link">FB</a>
+                            <a href="#" class="social-link">IG</a>
+                            <a href="#" class="social-link">TW</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Success Stories</h2>
+                <p class="section-subtitle">Real results from real members</p>
+            </div>
+            
+            <div class="testimonial-container">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Oddjjam completely changed my approach to fitness. The boxing program helped me lose 20kg in 6 months while building strength I never thought possible. The coaches push you to your limits but always with proper technique and safety in mind.</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" alt="Anna Reyes" class="author-image">
+                        <div>
+                            <h4 class="author-name">Anna Reyes</h4>
+                            <p class="author-info">Member for 1 year | Lost 20kg</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">As a former athlete, I was looking for a gym that could match the intensity of my previous training. Oddjjam delivered beyond my expectations. The facilities are world-class, and the trainers understand how to develop athletic performance at any level.</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" alt="Miguel Tan" class="author-image">
+                        <div>
+                            <h4 class="author-name">Miguel Tan</h4>
+                            <p class="author-info">Member for 2 years | Gained 8kg muscle</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="cta-title">START YOUR TRANSFORMATION</h2>
+            <p class="cta-text">Join Oddjjam Fitness Club today and experience training at an elite level. Your first session includes a comprehensive assessment and personalized plan.</p>
+            <a href="contact-us.html" class="btn btn-white">Join Now</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        Oddjjam <span class="text-red">FITNESS</span>
+                    </div>
+                    <p class="footer-about">Manila's premier athletic performance facility offering specialized training zones, expert coaching, and results-driven programs for serious fitness enthusiasts.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">FB</a>
+                        <a href="#" class="social-link">IG</a>
+                        <a href="#" class="social-link">TW</a>
+                        <a href="#" class="social-link">YT</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#features">Facilities</a></li>
+                        <li><a href="#programs">Programs</a></li>
+                        <li><a href="#trainers">Trainers</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-heading">Programs</h4>
+                    <ul class="footer-links">
+                        <li><a href="contact-us.html">Boxing Training</a></li>
+                        <li><a href="contact-us.html">Strength & Conditioning</a></li>
+                        <li><a href="contact-us.html">HIIT Workouts</a></li>
+                        <li><a href="contact-us.html">Personal Training</a></li>
+                        <li><a href="contact-us.html">Nutrition Coaching</a></li>
+                        <li><a href="contact-us.html">Recovery Sessions</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-heading">Contact Us</h4>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <p class="contact-text">123 Bonifacio High Street, BGC, Taguig City, Metro Manila, Philippines</p>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <p class="contact-text">(02) 8551-7890</p>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <p class="contact-text">+63 917 123 4567</p>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <p class="contact-text">info@Oddjjam.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 Oddjjam Fitness Club. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
